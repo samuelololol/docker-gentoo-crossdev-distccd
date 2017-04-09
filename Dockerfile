@@ -1,5 +1,6 @@
 FROM samuelololol/docker-gentoo-websync
 MAINTAINER samuelololol <samuelololol@gmail.com>
+RUN rm /sbin/unix_chkpwd
 RUN emerge crossdev distcc \
     sys-libs/binutils-libs sys-libs/db sys-libs/pam sys-apps/iproute2 dev-lang/perl
     # helps to save time for building later image
