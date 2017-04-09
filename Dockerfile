@@ -1,6 +1,8 @@
 FROM samuelololol/docker-gentoo-websync
 MAINTAINER samuelololol <samuelololol@gmail.com>
-RUN emerge crossdev distcc binutils-libs
+RUN emerge crossdev distcc \
+    sys-libs/binutils-libs sys-libs/db sys-libs/pam sys-apps/iproute2 dev-lang/perl
+    # helps to save time for building later image
 RUN mkdir -p /usr/local/portage-crossdev/{profiles,metadata} && \
     echo 'crossdev' > /usr/local/portage-crossdev/profiles/repo_name && \
     echo 'masters = gentoo' > /usr/local/portage-crossdev/metadata/layout.conf && \
