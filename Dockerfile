@@ -21,6 +21,12 @@ RUN ( \
     echo "exec distccd \"\$@\"" \
     ) > /usr/local/sbin/distccd-launcher && \
     chmod +x /usr/local/sbin/distccd-launcher
+RUN emerge ccache && \
+    echo 'FEATURES="ccache"' >> /etc/portage/make.conf && \
+    echo 'CCACHE_SIZE="2G"' >> /etc/portage/make.conf && \
+    echo 'CCACHE_MAXSIZE="2G"' >> /etc/portage/make.conf && \
+    echo 'CCACHE_DIR="/var/tmp/portage/ccache"' >> /etc/portage/make.conf && \
+    echo 'CCACHE_TEMPDIR="/var/tmp/portage/ccache"' >> /etc/portage/make.conf
 #RUN crossdev -S -v -t armv6j-hardfloat-linux-gnueabi
 #RUN rm -r /usr/portage
 #CMD ["/usr/local/sbin/distccd-launcher", "--allow", "0.0.0.0/0", "--user", "distcc", "--log-level", "notice", "--log-stderr", "--no-detach"]
